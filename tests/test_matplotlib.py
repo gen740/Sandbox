@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def save_static_image() -> None:
     plt.savefig(BytesIO())
-    plt.close()
+    plt.clf()
 
 
 def test1():
