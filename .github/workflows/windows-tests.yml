@@ -1,4 +1,4 @@
-name: tests
+name: windows-tests
 
 on:
   push:
@@ -6,10 +6,10 @@ on:
       - win_matplotlib_ci
   pull_request:
     paths:
-      - '.github/workflows/tests.yml'
+      - '.github/workflows/windows-tests.yml'
 jobs:
   tests-windows:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       fail-fast: false
