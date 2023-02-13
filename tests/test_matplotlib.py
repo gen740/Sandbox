@@ -1,11 +1,5 @@
-import matplotlib as mpl
 import matplotlib.pyplot as plt
-import matplotlib.style as mplstyle
 import pytest
-
-mpl.use("QtAgg")
-
-mplstyle.use("fast")
 
 
 @pytest.mark.parametrize("n", [i for i in range(2500)])

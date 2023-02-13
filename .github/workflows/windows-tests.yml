@@ -24,9 +24,9 @@ jobs:
     - name: Setup cache
       uses: actions/cache@v3
       env:
-        cache-name: test
+        cache-name: windows-test
       with:
-        path: test-pip-cache
+        path: ~/.cache/pip
         key: ${{ runner.os }}-${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('**/pyproject.toml') }}-v1
         restore-keys: |
           ${{ runner.os }}-${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('**/pyproject.toml') }}
@@ -38,7 +38,9 @@ jobs:
 
     - name: Install
       run: |
-        python3 -m pip install matplotlib pytest PyQt6
+        python3 -m pip install matplotlib pytest
+      env:
+        MPLBACKEND: "QtAgg"
 
     - name: Tests
       if:  ${{ github.event_name != 'schedule' }}
