@@ -1,6 +1,9 @@
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import matplotlib.style as mplstyle
 import pytest
+
+mpl.use("QtAgg")
 
 mplstyle.use("fast")
 
