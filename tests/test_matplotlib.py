@@ -8,7 +8,7 @@ mpl.use("QtAgg")
 mplstyle.use("fast")
 
 
-@pytest.mark.parametrize("n", [i for i in range(1000)])
+@pytest.mark.parametrize("n", [i for i in range(2500)])
 def test(n: int):
     plt.figure()
     plt.close()
