@@ -38,11 +38,11 @@ jobs:
     - name: Install
       run: |
         python3 -m pip install matplotlib pytest
-      env:
-        MPLBACKEND: "QtAgg"
 
     - name: Tests
       if:  ${{ github.event_name != 'schedule' }}
       run: |
         pytest
+      env:
+        MPLBACKEND: "QtAgg"
 
