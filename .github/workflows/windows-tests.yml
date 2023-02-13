@@ -26,7 +26,7 @@ jobs:
       env:
         cache-name: test
       with:
-        path: ~/.cache/pip
+        path: test-pip-cache
         key: ${{ runner.os }}-${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('**/pyproject.toml') }}-v1
         restore-keys: |
           ${{ runner.os }}-${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('**/pyproject.toml') }}
