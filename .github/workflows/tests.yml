@@ -8,7 +8,7 @@ on:
     paths:
       - '.github/workflows/tests.yml'
 jobs:
-  tests-windows:
+  tests:
     runs-on: ubuntu-latest
 
     strategy:

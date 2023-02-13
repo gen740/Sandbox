@@ -1,7 +1,12 @@
+import os
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import pytest
 
+
+def test_environment():
+    assert os.environ.get("MPLBACKEND") == "QtAgg"
+    
 
 def test_check_backend():
     assert mpl.get_backend() == "QtAgg"
