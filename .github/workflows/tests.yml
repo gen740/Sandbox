@@ -37,10 +37,9 @@ jobs:
 
     - name: Install
       run: |
-        python3 -m pip install matplotlib pytest
+        python3 -m pip install matplotlib pytest PyQt6
 
     - name: Tests
-      if:  ${{ github.event_name != 'schedule' }}
       run: |
         export MPLBACKEND="QtAgg" && pytest
       env:
