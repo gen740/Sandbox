@@ -3,7 +3,7 @@ name: windows-tests
 on:
   push:
     branches:
-      - win_cache
+      - win_tqdm
   pull_request:
     paths:
       - '.github/workflows/windows-tests.yml'
@@ -37,4 +37,8 @@ jobs:
 
     - name: Install
       run: |
-        python3 -m pip install numpy
+        python3 -m pip install pytest tqdm
+
+    - name: Test
+      run: |
+        pytest
