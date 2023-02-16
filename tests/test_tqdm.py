@@ -1,11 +1,12 @@
 import datetime
+import random
+import time
 
 import pytest
-import time
 from tqdm import tqdm
 
 
-@pytest.mark.parametrize("n", [i for i in range(100)])
+@pytest.mark.parametrize("n", [i for i in range(500)])
 def test_tqdm(n: int, capsys: pytest.CaptureFixture):
     _ = n
 
@@ -33,9 +34,11 @@ def tqdm_main():
 
         progress_bar.update(time_diff)
         last_elapsed_seconds = elapsed_seconds
+
         if elapsed_seconds > timeout:
             break
-        time.sleep(0.01)
+
+        time.sleep(random.random() * 0.2)
 
 
 if __name__ == "__main__":
