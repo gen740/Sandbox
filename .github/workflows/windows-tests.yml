@@ -25,7 +25,6 @@ jobs:
       env:
         cache-name: windows-test
       with:
-        path: ~/.cache/pip
         key: ${{ runner.os }}-${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('**/dummy') }}-v1
         restore-keys: |
           ${{ runner.os }}-${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('**/dummy') }}
