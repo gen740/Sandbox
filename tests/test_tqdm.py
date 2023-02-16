@@ -40,7 +40,7 @@ def tqdm_main():
         if elapsed_seconds > timeout:
             break
 
-        time.sleep(random.random() * 0.1)
+        time.sleep(2.1)
 
 
 if __name__ == "__main__":
