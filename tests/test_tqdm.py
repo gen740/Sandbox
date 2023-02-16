@@ -1,4 +1,5 @@
 import pytest
+import sys
 from tqdm import tqdm
 
 
@@ -6,7 +7,7 @@ from tqdm import tqdm
 def test_tqdm(n: int, capsys: pytest.CaptureFixture):
     _ = n
     for _ in tqdm(range(1000)):
-        pass
+        print("*" * 300, file=sys.stderr)
 
     _, err = capsys.readouterr()
 
