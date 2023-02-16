@@ -24,7 +24,6 @@ def tqdm_main():
     last_elapsed_seconds = 0.0
 
     while True:
-        time.sleep(0.2)
         elapsed_seconds = (datetime.datetime.now() - time_start).total_seconds()
         time_diff = elapsed_seconds - last_elapsed_seconds
 
@@ -36,6 +35,7 @@ def tqdm_main():
         last_elapsed_seconds = elapsed_seconds
         if elapsed_seconds > timeout:
             break
+        time.sleep(0.01)
 
 
 if __name__ == "__main__":
