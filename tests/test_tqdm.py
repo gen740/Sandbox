@@ -1,14 +1,39 @@
+import datetime
+
 import pytest
-import sys
 from tqdm import tqdm
 
 
-@pytest.mark.parametrize("n", [i for i in range(1000)])
+@pytest.mark.parametrize("n", [i for i in range(5000)])
 def test_tqdm(n: int, capsys: pytest.CaptureFixture):
     _ = n
-    for _ in tqdm(range(1000)):
-        print("*" * 300, file=sys.stderr)
+
+    tqdm_main()
 
     _, err = capsys.readouterr()
-
     assert "100%" in err
+
+
+def tqdm_main():
+    timeout = 0.001
+    total = tqdm.format_interval(100)
+    fmt = "{desc} {percentage:3.0f}%|{bar}| {elapsed}/" + total
+    progress_bar = tqdm(total=timeout, bar_format=fmt)
+    time_start = datetime.datetime.now()
+    last_elapsed_seconds = 0.0
+
+    while True:
+        elapsed_seconds = (datetime.datetime.now() - time_start).total_seconds()
+        time_diff = elapsed_seconds - last_elapsed_seconds
+        if elapsed_seconds > timeout:
+            # Clip elapsed time to avoid tqdm warnings.
+            time_diff -= elapsed_seconds - timeout
+
+        progress_bar.update(time_diff)
+        last_elapsed_seconds = elapsed_seconds
+        if elapsed_seconds > timeout:
+            break
+
+
+if __name__ == "__main__":
+    tqdm_main()
