@@ -14,7 +14,43 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.7', '3.8', '3.9', '3.10']
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Setup cache
+      uses: actions/cache@v3
+      env:
+        cache-name: windows-test
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('**/pyproject.toml') }}-v1
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.python-version }}-${{ env.cache-name }}-${{ hashFiles('**/pyproject.toml') }}
+
+    - name: Setup Python${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install
+      run: |
+        python3 -m pip install matplotlib pytest
+
+    - name: Tests
+      if:  ${{ github.event_name != 'schedule' }}
+      run: |
+        pytest -m "not qtagg"
+
+  tests-windows-with-QtAgg:
+    runs-on: windows-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
 
     steps:
     - name: Checkout
@@ -39,7 +75,7 @@ jobs:
       run: |
         python3 -m pip install matplotlib pytest PyQt6
 
-    - name: Tests
+    - name: Tests-with-QtAgg
       if:  ${{ github.event_name != 'schedule' }}
       run: |
         pytest
