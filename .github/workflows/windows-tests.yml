@@ -37,6 +37,7 @@ jobs:
 
     - name: Install
       run: |
+        python3 -m pip install mxnet
         python3 -m pip install pytest tqdm
 
     - name: Test
