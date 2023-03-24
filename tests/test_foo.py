@@ -1,9 +1,9 @@
+import tempfile
+from pathlib import Path, PosixPath
 from threading import Event, Lock, Thread
 from time import sleep
-import tempfile
 
 import pytest
-from pathlib import Path, PosixPath
 
 counter = 0
 
