@@ -1,28 +1,21 @@
 on:
   workflow_dispatch:
     inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-          - info
-          - warning
-          - debug
-      print_tags:
-        description: 'True to print to STDOUT'
-        required: true
-        type: boolean
-      tags:
-        description: 'Test scenario tags'
-        required: true
+      msg1:
+        description: 'Message1'
+        required: false
+        type: string
+      msg2:
+        description: 'Message2'
+        required: false
         type: string
 
 jobs:
   print-tag:
     runs-on: ubuntu-latest
-    if:  ${{ inputs.print_tags }}
     steps:
       - name: Print the input tag to STDOUT
-        run: echo  The tags are ${{ inputs.tabs }} 
+        run: |
+          $( test "${{ inputs.msg1 }}" && test ${{ inputs.msg2 }} ) \
+             && echo "${{ inputs.msg1 }} ${{ inputs.msg2 }}" \
+             || echo "foo"
