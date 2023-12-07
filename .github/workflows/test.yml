@@ -16,9 +16,11 @@ jobs:
       - name: Update test
         run: |
           brew update
-          brew unlink node@18
-          brew unlink python@3.11
+          brew unlink node@18 || echo "nod@18 no such keg"
+          brew unlink python@3.11 || echo "python@3.11 no such keg"
           brew upgrade
+
+          brew install llvm
         env:
           HOMEBREW_VERBOSE: 1
 
