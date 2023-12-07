@@ -1,0 +1,18 @@
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  tests-mac:
+    runs-on: macos-latest
+
+    steps:
+      - name: Install
+        run: |
+          brew ls
+
+      - name: Scheduled tests
+        run: |
+          brew update && brew upgrade
