@@ -20,6 +20,7 @@ jobs:
           brew unlink python@3.11 || echo "python@3.11 no such keg"
           brew upgrade
 
+          rm /usr/local/bin/2to3
           brew install llvm
         env:
           HOMEBREW_VERBOSE: 1
