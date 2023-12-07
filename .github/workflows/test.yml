@@ -12,6 +12,7 @@ jobs:
       - name: List homebrew
         run: |
           brew install foofoo || true
+        continue-on-error: true
 
       - name: Update test
         run: |
