@@ -9,13 +9,15 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Install
+      - name: List homebrew
         run: |
           brew ls
 
-      - name: Scheduled tests
+      - name: Update test
         run: |
           brew update
+          brew unlink node@18
+          brew unlink python@3.11
           brew upgrade
         env:
           HOMEBREW_VERBOSE: 1
