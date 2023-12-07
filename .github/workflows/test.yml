@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: List homebrew
         run: |
-          brew install foofoo || echo "Does not exists"
+          brew install foofoo || true
 
       - name: Update test
         run: |
