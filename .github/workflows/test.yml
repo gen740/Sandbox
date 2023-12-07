@@ -15,4 +15,8 @@ jobs:
 
       - name: Scheduled tests
         run: |
-          brew update && brew upgrade
+          brew update
+          brew upgrade
+        env:
+          HOMEBREW_VERBOSE: 1
+
