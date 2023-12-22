@@ -5,20 +5,20 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests-mac:
+  install:
     runs-on: macos-latest
-
     steps:
-      - name: List homebrew
-        run: |
-          brew install foofoo || true
-        continue-on-error: true
-
-      - name: Update test
-        run: |
-          test
-
       - name: Install llvm
         run: |
-          brew install llvm
+          echo "foo" > test.txt
+
+  second_job:
+    needs: install
+    steps:
+      - name: cat
+        run: |
+          cat ./test.txt
+
+
+
 
