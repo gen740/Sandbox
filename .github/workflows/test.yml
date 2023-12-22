@@ -13,6 +13,7 @@ jobs:
           echo "foo" > test.txt
 
   second_job:
+    runs-on: macos-latest
     needs: install
     steps:
       - name: cat
