@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools >= 61.1.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Test"
+description = "Test namespace"
+readme = "README.md"
+requires-python = ">=3.7"
+dynamic = ["version"]
+
+# [tool.setuptools]
+
+[tool.setuptools.package-dir]
+"foo_bar" = "src"
+"foo_bar.A" = "A"
+"foo_bar.B" = "B"
